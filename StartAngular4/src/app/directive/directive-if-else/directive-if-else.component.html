@@ -1,0 +1,11 @@
+<div *ngIf="status; else templatechuadangnhap">
+    <button (click) = "dangXuat()" >Đăng Xuất</button>
+    <h5>Xin chào CyberSoft</h5>
+</div>
+
+
+<ng-template #templatechuadangnhap>
+    <button (click) = "dangNhap()" >Đăng Nhập</button>
+    <h5>Xin chào CyberSoft</h5>
+    <h5>Chưa Đăng Nhập</h5>
+</ng-template>

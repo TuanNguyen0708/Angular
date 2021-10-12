@@ -1,0 +1,40 @@
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã Sinh Viên</th>
+                <th>Họ Tên</th>
+                <th>Tuổi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let sv of danhSachSinhVien; let STT = index">
+                <td>{{STT + 1}}</td>
+                <td>{{sv.maSV}}</td>
+                <td>{{sv.hoTen}}</td>
+                <td>{{sv.tuoi}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <h3>Thêm Sinh Viên</h3>
+    <div class="form-group">
+        <span>Mã Sinh Viên</span>
+        <input #maSV type="text" class="form-control" />
+    </div>
+    <div class="form-group">
+        <span>Họ Tên</span>
+        <input #hoTen type="text" class="form-control" />
+    </div>
+    <div class="form-group">
+        <span>Tuổi</span>
+        <input #tuoi type="text" class="form-control" />
+    </div>
+    <div class="form-group">
+        <button class="btn btn-success" (click)="themsinhvien(maSV.value, hoTen.value, tuoi.value)" >Thêm Sinh Viên</button>
+    </div>
+    
+</div>
