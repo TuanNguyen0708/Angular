@@ -1,0 +1,57 @@
+<div class="container">
+  <form #frmInfo = "ngForm" (ngSubmit)="submit(frmInfo.value)" >
+    <h3>Form-Validation</h3>
+    <div class="form-group">
+      <p>Email</p>
+      <input class="form-control" minlength="6" maxlength="32" #email="ngModel" name="email" ngModel required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)] = "userInput.email"/>
+      <div *ngIf = "(email.touched || email.dirty) && email.errors" >
+        <p *ngIf = "email.errors.required" class="text-danger">Email không được bỏ trống</p>
+        <p *ngIf = "email.errors.pattern" class="text-danger">Email không đúng định dạng</p>
+        <p *ngIf = "email.errors.minlength || email.errors.maxlength" class="text-danger">Email phải từ 6 - 32 kí tự</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <p>Name</p>
+      <input class="form-control" #name="ngModel" name="name" ngModel required [(ngModel)] = "userInput.name" />
+      <div *ngIf = "(name.touched || name.dirty) && name.errors" >
+        <p class="text-danger">Name không được bỏ trống</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <p>School</p>
+      <select class="form-control" #sch="ngModel" name="school" ngModel required  [(ngModel)] = "userInput.school" >
+          <option *ngFor = "let sch of school" [value] = "sch.id">{{sch.name}}</option>
+      </select>
+        <div *ngIf = "(sch.touched || sch.dirty) && sch.errors" >
+          <p class="text-danger">School chưa được chọn</p>
+        </div>
+    </div>
+    <div class="form-group mt-2">
+      <button class="btn btn-success" [disabled] = "frmInfo.invalid || frmInfo.submitted" type='submit'>Submit</button>
+    </div>
+  </form>
+</div>
+
+<hr>
+<div class="mt2 container">
+  <div class="table">
+    <thead>
+      <tr>
+        <td>Email</td>
+        <td>Name</td>
+        <td>School</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let user of arrUser">
+        <td>{{user.email}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.school}}</td>
+        <td>
+          <button class="btn btn-primary" (click) = "edit(user)">Chỉnh Sửa</button>
+          <button class="btn btn-danger">Xóa</button>
+        </td>
+      </tr>
+    </tbody>
+  </div>
+</div>

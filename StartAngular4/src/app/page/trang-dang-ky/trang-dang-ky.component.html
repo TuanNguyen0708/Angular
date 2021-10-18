@@ -1,0 +1,135 @@
+<div class="container">
+    <div class="row">
+        <div class="col-5 mx-auto">
+            <form #formDangKy = "ngForm" (ngSubmit)="dangKy(formDangKy.value)" autocomplete="off">
+                <h4 class="display-4">Dang Ky</h4>
+                <div class="form-group">
+                    <label for="">ID</label>
+                    <input type="text" class="form-control" name="id" ngModel required #id = "ngModel" minlength="2" maxlength="4">
+                    <div *ngIf = "id.errors && (id.touched || id.dirty)">
+                        <div class="alert alert-danger" *ngIf = "id.errors.required">
+                            ID không đươc bỏ trống
+                        </div>
+                        <div class="alert alert-danger" *ngIf = "id.errors.minlength || id.errors.maxlength">
+                            ID phải từ 2 - 4 kí tự
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">Tai Khoan</label>
+                    <input type="text" class="form-control" name="taiKhoan" ngModel required #taiKhoan = "ngModel" minlength="6" maxlength="32">
+                    <div *ngIf = "taiKhoan.errors && (taiKhoan.touched || taiKhoan.dirty)">
+                        <div class="alert alert-danger" *ngIf = "taiKhoan.errors.required">
+                            Tài khoản không đươc bỏ trống
+                        </div>
+                        <div class="alert alert-danger" *ngIf = "taiKhoan.errors.minlength || taiKhoan.errors.maxlength">
+                            Tài Khoản phải từ 6 - 32 kí tự
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">Mat Khau</label>
+                    <input type="password" class="form-control" name="matKhau" ngModel #matKhau = "ngModel" required minlength="6" maxlength="32">
+                    <div *ngIf = "matKhau.errors && (matKhau.touched || matKhau.dirty)">
+                        <div class="alert alert-danger" *ngIf = "matKhau.errors.required">
+                            Tài khoản không đươc bỏ trống
+                        </div>
+                        <div class="alert alert-danger" *ngIf = "matKhau.errors.minlength || matKhau.errors.maxlength">
+                            Tài Khoản phải từ 6 - 32 kí tự
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">Ho Ten</label>
+                    <input type="text" class="form-control" name="hoTen" ngModel #hoTen = "ngModel" required minlength="6" maxlength="32" pattern='^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +"ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +"ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$'>
+                    <div *ngIf = "hoTen.errors && (hoTen.touched || hoTen.dirty)">
+                        <div class="alert alert-danger" *ngIf = "hoTen.errors.required">
+                            Họ tên không đươc bỏ trống
+                        </div>
+                        <div class="alert alert-danger" *ngIf = "hoTen.errors.minlength || hoTen.errors.maxlength">
+                            Họ tên phải từ 6 - 32 kí tự
+                        </div>
+                        <div class="alert alert-danger" *ngIf = "hoTen.errors.pattern">
+                            Họ tên phải là chữ
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input type="email" class="form-control" name="email" ngModel #email = "ngModel" required minlength="6" maxlength="32" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
+                    <div *ngIf = "email.errors && (email.touched || email.dirty)">
+                        <div class="alert alert-danger" *ngIf = "email.errors.required">
+                            Email không đươc bỏ trống
+                        </div>
+                        <div class="alert alert-danger" *ngIf = "email.errors.minlength || email.errors.maxlength">
+                            Email phải từ 6 - 32 kí tự
+                        </div>
+                        <div class="alert alert-danger" *ngIf = "email.errors.pattern">
+                            Email không đúng định dạng
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">So Dien Thoai</label>
+                    <input type="number" class="form-control" name="soDienThoai" ngModel #soDienThoai = "ngModel" required pattern="^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$" >
+                    <div *ngIf = "soDienThoai.errors && (soDienThoai.touched || soDienThoai.dirty)">
+                        <div class="alert alert-danger" *ngIf = "soDienThoai.errors.required">
+                            Số điện thoại không đươc bỏ trống
+                        </div>
+                        
+                        <div class="alert alert-danger" *ngIf = "soDienThoai.errors.pattern">
+                            Số điện thoại không đúng định dạng
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">Loai Nguoi Dung</label> <br>
+                    <input type="radio" ngModel value="KhachHang" name="maLoaiNguoiDung" ngModel #maLoaiNguoiDung = "ngModel" required> Khach Hang <br>
+                    <input type="radio" ngModel value="QuanTri" name="maLoaiNguoiDung" ngModel #maLoaiNguoiDung = "ngModel" required> Admin
+                    <div *ngIf = "maLoaiNguoiDung.errors && (maLoaiNguoiDung.touched || maLoaiNguoiDung.dirty)">
+                        <div class="alert alert-danger" *ngIf = "maLoaiNguoiDung.errors.required">
+                            Vui lòng chọn 1 trong 2
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit" [disabled] = "formDangKy.invalid" >Dang Ky</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+
+<table class="table container">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>ID</th>
+            <th>Tài Khoản</th>
+            <th>Mật Khẩu</th>
+            <th>Họ Tên</th>
+            <th>Email</th>
+            <th>Số Điện Thoại</th>
+            <th>Loại Người Dùng</th>
+            <th>Hành Động</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let nguoiDung of mangDangKy; let i = index">
+            <td scope="row">{{i + 1}}</td>
+            <td>{{nguoiDung.id}}</td>
+            <td>{{nguoiDung.taiKhoan}}</td>
+            <td>{{nguoiDung.matKhau}}</td>
+            <td>{{nguoiDung.hoTen}}</td>
+            <td>{{nguoiDung.email}}</td>
+            <td>{{nguoiDung.soDienThoai}}</td>
+            <td>{{nguoiDung.maLoaiNguoiDung}}</td>
+            <td>
+                <button class="btn btn-primary">
+                    Edit
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
